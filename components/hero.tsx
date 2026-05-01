@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import { FaLocationArrow } from "react-icons/fa6";
 

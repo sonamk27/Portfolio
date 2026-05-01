@@ -35,16 +35,20 @@ export const Footer = () => {
           achieve your goals.
         </p>
 
-        <button
+        <div
           onClick={() => setIsContactFormOpen(true)}
           className="md:mt-10"
+          style={{ cursor: 'pointer' }}
+          role="button"
+          tabIndex={0}
+          onKeyDown={(e) => e.key === 'Enter' && setIsContactFormOpen(true)}
         >
           <MagicButton
             title="Let's get in touch"
             icon={<FaLocationArrow />}
             position="right"
           />
-        </button>
+        </div>
       </div>
 
       <div className="relative z-[999] mt-16 flex flex-col items-center justify-between md:flex-row">
