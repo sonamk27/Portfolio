@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { FaTimes, FaGithub, FaLocationArrow } from "react-icons/fa";
+import { FaTimes, FaGithub } from "react-icons/fa";
 
 import { MagicButton } from "@/components/ui/magic-button";
 

@@ -7,7 +7,6 @@ import { FaLocationArrow } from "react-icons/fa6";
 
 import { ContactForm } from "@/components/contact-form";
 import { MagicButton } from "@/components/ui/magic-button";
-import { links } from "@/config";
 import { socialMedia } from "@/data";
 
 export const Footer = () => {
