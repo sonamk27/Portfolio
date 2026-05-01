@@ -81,6 +81,13 @@ interface ProjectModalProps {
 export const ProjectModal = ({ isOpen, project, onClose }: ProjectModalProps) => {
   const [isAnimating, setIsAnimating] = useState(false);
 
+  const handleClose = () => {
+    setIsAnimating(false);
+    setTimeout(() => {
+      onClose();
+    }, 200);
+  };
+
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === "Escape" && isOpen) {
@@ -96,14 +103,7 @@ export const ProjectModal = ({ isOpen, project, onClose }: ProjectModalProps) =>
     return () => {
       document.removeEventListener("keydown", handleEscape);
     };
-  }, [isOpen]);
-
-  const handleClose = () => {
-    setIsAnimating(false);
-    setTimeout(() => {
-      onClose();
-    }, 200);
-  };
+  }, [isOpen, handleClose]);
 
   const handleBackdropClick = (e: React.MouseEvent) => {
     if (e.target === e.currentTarget) {

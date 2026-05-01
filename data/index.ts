@@ -186,3 +186,5 @@ export const techStack = {
   stack1: ["React.js", "Node.js", "Next.js", "TypeScript", "JavaScript", "HTML & CSS"],
   stack2: ["Tailwind CSS", "MongoDB", "REST APIs", "Git & GitHub", "UI/UX Design", "Python"],
 } as const;
+
+export const companies = [];
