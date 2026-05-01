@@ -119,22 +119,22 @@ export const BentoGridItem = ({
 
         <div
           className={cn(
-            "relative flex min-h-40 flex-col p-5 px-5 transition duration-200 group-hover/bento:translate-x-2 md:h-full lg:p-10",
+            "relative flex min-h-40 flex-col p-5 px-5 transition duration-200 group-hover/bento:translate-x-2 md:h-full lg:p-10 z-10",
             titleClassName
           )}
         >
-          <div className="z-10 font-sans text-sm font-extralight text-[#c1c2d3] md:text-xs lg:text-base">
+          <div className="relative z-20 font-sans text-sm font-extralight text-[#c1c2d3] md:text-xs lg:text-base whitespace-pre-line">
             {description}
           </div>
 
-          <div className="z-10 max-w-96 font-sans text-lg font-bold lg:text-3xl">
+          <div className="relative z-20 max-w-96 font-sans text-lg font-bold lg:text-3xl">
             {title}
           </div>
 
           {id === 2 && <GridGlobe />}
 
           {id === 3 && (
-            <div className="absolute -right-3 flex w-fit gap-1 lg:-right-2 lg:gap-5">
+            <div className="absolute -right-3 top-20 flex w-fit gap-1 lg:-right-2 lg:gap-5">
               <div className="flex flex-col gap-3 lg:gap-8">
                 {techStack.stack1.map((item) => (
                   <span

@@ -121,6 +121,12 @@ export const Globe = ({ globeConfig, data }: WorldProps) => {
     let points = [];
     for (let i = 0; i < arcs.length; i++) {
       const arc = arcs[i];
+      
+      // Validate coordinates to prevent NaN values
+      if (isNaN(arc.startLat) || isNaN(arc.startLng) || isNaN(arc.endLat) || isNaN(arc.endLng)) {
+        continue; // Skip invalid coordinates
+      }
+      
       const rgb = hexToRgb(arc.color) as { r: number; g: number; b: number };
       points.push({
         size: defaultProps.pointSize,
@@ -171,21 +177,42 @@ export const Globe = ({ globeConfig, data }: WorldProps) => {
   const startAnimation = () => {
     if (!globeRef.current || !globeData) return;
 
+    // Filter out invalid arcs before applying
+    const validData = data.filter(arc => 
+      !isNaN(arc.startLat) && !isNaN(arc.startLng) && !isNaN(arc.endLat) && !isNaN(arc.endLng)
+    );
+
     globeRef.current
-      .arcsData(data)
-      .arcStartLat((d) => (d as { startLat: number }).startLat * 1)
-      .arcStartLng((d) => (d as { startLng: number }).startLng * 1)
-      .arcEndLat((d) => (d as { endLat: number }).endLat * 1)
-      .arcEndLng((d) => (d as { endLng: number }).endLng * 1)
+      .arcsData(validData)
+      .arcStartLat((d) => {
+        const lat = (d as { startLat: number }).startLat;
+        return isNaN(lat) ? 0 : lat * 1;
+      })
+      .arcStartLng((d) => {
+        const lng = (d as { startLng: number }).startLng;
+        return isNaN(lng) ? 0 : lng * 1;
+      })
+      .arcEndLat((d) => {
+        const lat = (d as { endLat: number }).endLat;
+        return isNaN(lat) ? 0 : lat * 1;
+      })
+      .arcEndLng((d) => {
+        const lng = (d as { endLng: number }).endLng;
+        return isNaN(lng) ? 0 : lng * 1;
+      })
       .arcColor((e: any) => (e as { color: string }).color)
       .arcAltitude((e) => {
-        return (e as { arcAlt: number }).arcAlt * 1;
+        const alt = (e as { arcAlt: number }).arcAlt;
+        return isNaN(alt) ? 0.1 : alt * 1;
       })
       .arcStroke((e) => {
         return [0.32, 0.28, 0.3][Math.round(Math.random() * 2)];
       })
       .arcDashLength(defaultProps.arcLength)
-      .arcDashInitialGap((e) => (e as { order: number }).order * 1)
+      .arcDashInitialGap((e) => {
+        const order = (e as { order: number }).order;
+        return isNaN(order) ? 0 : order * 1;
+      })
       .arcDashGap(15)
       .arcDashAnimateTime((e) => defaultProps.arcTime);
 

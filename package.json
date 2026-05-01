@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "server": "node server.js"
   },
   "author": {
     "name": "Sanidhya Kumar Verma",
@@ -82,6 +83,7 @@
     "mini-svg-data-uri": "^1.4.4",
     "next": "14.2.15",
     "next-themes": "^0.3.0",
+    "nodemailer": "^8.0.7",
     "react": "^18",
     "react-dom": "^18",
     "react-icons": "^5.2.1",
@@ -93,6 +95,7 @@
   },
   "devDependencies": {
     "@types/node": "^20",
+    "@types/nodemailer": "^8.0.0",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "@types/react-lottie": "^1.2.10",
